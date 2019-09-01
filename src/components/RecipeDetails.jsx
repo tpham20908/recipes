@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import config from "../config";
 import { recipe } from "../templates/tempDetails";
@@ -9,7 +10,7 @@ class RecipeDetails extends Component {
 
     this.state = {
       recipe: recipe,
-      url: config.F2FGET + props.id
+      url: config.F2FGET + props.recipe_id
     };
   }
 
@@ -37,20 +38,20 @@ class RecipeDetails extends Component {
       source_url,
       title
     } = this.state.recipe;
-    const { id } = this.props;
-    console.log(id);
 
     return (
       <React.Fragment>
         <div className="container">
           <div className="row">
             <div className="col-10 mx-auto col-md-6 my-3">
-              <button
-                type="button"
-                className="btn btn-warning text-capitalize mb-5"
-              >
-                Back to recipe list
-              </button>
+              <Link to="/">
+                <button
+                  type="button"
+                  className="btn btn-warning text-capitalize mb-5"
+                >
+                  Back to recipe list
+                </button>
+              </Link>
               <img src={image_url} className="d-block w-100" alt="recipe" />
             </div>
             {/* detail */}

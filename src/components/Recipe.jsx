@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const styles = {
   imgCard: {
@@ -38,13 +39,15 @@ class Recipe extends Component {
               </h6>
             </div>
             <div className="card-footer">
-              <button
-                type="button"
-                className="btn btn-primary text-capitalize"
-                onClick={event => setRecipeId(event, recipe_id)}
-              >
-                Details
-              </button>
+              <Link to={`/details`}>
+                <button
+                  type="button"
+                  className="btn btn-primary text-capitalize"
+                  onClick={() => setRecipeId(recipe_id)}
+                >
+                  Details
+                </button>
+              </Link>
               <a
                 className="btn btn-success text-capitalize mx-2"
                 href={source_url}
