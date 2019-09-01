@@ -16,13 +16,14 @@ const styles = {
 
 class App extends Component {
   state = {
-    recipes: recipes
+    recipe_id: 35386,
+    recipes: recipes,
+    url: config.F2FSEARCH
   };
 
   async componentDidMount() {
-    const url = config.F2FURL;
     try {
-      const recipes = await this.getReceipes(url);
+      const recipes = await this.getReceipes(this.state.url);
       this.setState({ recipes });
     } catch (error) {
       console.log(error);
@@ -35,14 +36,19 @@ class App extends Component {
     return jsonData.recipes;
   };
 
+  setRecipeId = (event, id) => {
+    event.preventDefault();
+    this.setState({ recipe_id: id });
+  };
+
   render() {
-    const { recipes } = this.state;
+    const { recipe_id, recipes } = this.state;
 
     return (
       <React.Fragment>
         <div style={styles.container}>
-          <RecipeList recipes={recipes} />
-          <RecipeDetails />
+          {/* <RecipeList recipes={recipes} setRecipeId={this.setRecipeId} /> */}
+          <RecipeDetails id={recipe_id} />
         </div>
         {/* <BannerLeft /> */}
         {/* <BannerRight /> */}

@@ -1,8 +1,9 @@
+const F2FAPIKEY = "208153e49795cf523ea34733a50ab840";
+
 export default class config {
   // Food2fork
-  static F2FAPIKEY = "208153e49795cf523ea34733a50ab840";
-  static F2FURL =
-    "https://www.food2fork.com/api/search?key=208153e49795cf523ea34733a50ab840";
+  static F2FSEARCH = `https://www.food2fork.com/api/search?key=${F2FAPIKEY}`;
+  static F2FGET = `https://www.food2fork.com/api/get?key=${F2FAPIKEY}&rId=`;
   // TheMealDB
   static AREA = "https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian";
   static CATEGORIES = "https://www.themealdb.com/api/json/v1/1/categories.php";

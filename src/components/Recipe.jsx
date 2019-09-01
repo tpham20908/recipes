@@ -10,7 +10,9 @@ const styles = {
 
 class Recipe extends Component {
   render() {
+    const { setRecipeId } = this.props;
     const {
+      recipe_id,
       image_url,
       ingredients,
       publisher,
@@ -36,7 +38,11 @@ class Recipe extends Component {
               </h6>
             </div>
             <div className="card-footer">
-              <button type="button" className="btn btn-primary text-capitalize">
+              <button
+                type="button"
+                className="btn btn-primary text-capitalize"
+                onClick={event => setRecipeId(event, recipe_id)}
+              >
                 Details
               </button>
               <a
@@ -56,7 +62,8 @@ class Recipe extends Component {
 }
 
 Recipe.propTypes = {
-  recipe: PropTypes.object.isRequired
+  recipe: PropTypes.object.isRequired,
+  setRecipeId: PropTypes.func.isRequired
 };
 
 export default Recipe;

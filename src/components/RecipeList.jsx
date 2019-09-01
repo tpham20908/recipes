@@ -6,7 +6,7 @@ import RecipeSearch from "./RecipeSearch";
 
 class RecipeList extends Component {
   render() {
-    const { recipes } = this.props;
+    const { recipes, setRecipeId } = this.props;
 
     return (
       <React.Fragment>
@@ -23,7 +23,11 @@ class RecipeList extends Component {
           {/* recipes */}
           <div className="row">
             {recipes.map(recipe => (
-              <Recipe key={recipe.recipe_id} recipe={recipe} />
+              <Recipe
+                key={recipe.recipe_id}
+                recipe={recipe}
+                setRecipeId={setRecipeId}
+              />
             ))}
           </div>
           {/* end recipes */}
@@ -34,7 +38,8 @@ class RecipeList extends Component {
 }
 
 RecipeList.propTypes = {
-  recipes: PropTypes.array.isRequired
+  recipes: PropTypes.array.isRequired,
+  setRecipeId: PropTypes.func.isRequired
 };
 
 export default RecipeList;
