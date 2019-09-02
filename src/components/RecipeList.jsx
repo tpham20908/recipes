@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import Recipe from "./Recipe";
 import RecipeSearch from "./RecipeSearch";
@@ -7,6 +8,7 @@ import RecipeSearch from "./RecipeSearch";
 class RecipeList extends Component {
   render() {
     const {
+      error,
       handleChange,
       handleSubmit,
       recipes,
@@ -32,13 +34,17 @@ class RecipeList extends Component {
 
           {/* recipes */}
           <div className="row">
-            {recipes.map(recipe => (
-              <Recipe
-                key={recipe.recipe_id}
-                recipe={recipe}
-                setRecipeId={setRecipeId}
-              />
-            ))}
+            {error ? (
+              <h2 className="text-danger text-capitalize mx-auto">{error}</h2>
+            ) : (
+              recipes.map(recipe => (
+                <Recipe
+                  key={recipe.recipe_id}
+                  recipe={recipe}
+                  setRecipeId={setRecipeId}
+                />
+              ))
+            )}
           </div>
           {/* end recipes */}
         </div>
@@ -48,6 +54,7 @@ class RecipeList extends Component {
 }
 
 RecipeList.propTypes = {
+  error: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   recipes: PropTypes.array.isRequired,

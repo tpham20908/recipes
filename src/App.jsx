@@ -22,6 +22,7 @@ const styles = {
 
 class App extends Component {
   state = {
+    error: "",
     recipe_id: 35376,
     recipes: recipes,
     searchTearm: ""
@@ -29,8 +30,7 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const recipes = await this.getReceipes(baseUrl);
-      this.setState({ recipes });
+      this.getReceipes(baseUrl);
     } catch (error) {
       console.log(error);
     }
@@ -41,15 +41,14 @@ class App extends Component {
     this.setState({ searchTearm });
   };
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
     try {
       const numberOfPage = 2;
       const { searchTearm } = this.state;
-      const recipes = await this.getReceipes(
+      this.getReceipes(
         `${baseUrl}${query}${searchTearm}${pages}${numberOfPage}`
       );
-      this.setState({ recipes, searchTearm: "" });
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +57,16 @@ class App extends Component {
   getReceipes = async url => {
     const data = await fetch(url);
     const jsonData = await data.json();
-    return jsonData.recipes;
+    const recipes = jsonData.recipes;
+    if (recipes.length === 0) {
+      this.setState(() => {
+        return { error: "Sorry, but your search did not return any results." };
+      });
+    } else {
+      this.setState(() => {
+        return { error: "", recipes, searchTearm: "" };
+      });
+    }
   };
 
   setRecipeId = id => {
@@ -66,7 +74,7 @@ class App extends Component {
   };
 
   render() {
-    const { recipe_id, recipes, searchTearm } = this.state;
+    const { error, recipe_id, recipes, searchTearm } = this.state;
 
     return (
       <React.Fragment>
@@ -77,6 +85,7 @@ class App extends Component {
               path="/"
               render={() => (
                 <RecipeList
+                  error={error}
                   handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                   recipes={recipes}

@@ -27,7 +27,7 @@ setInterval(() => {
   console.log(arrayKeys[0]);
 }, 1000 * 60 * 60);
 
-const F2FAPIKEY = arrayKeys[0];
+const F2FAPIKEY = arrayKeys[1];
 
 export default class config {
   // Food2fork
