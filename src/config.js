@@ -1,4 +1,10 @@
-const F2FAPIKEY = "208153e49795cf523ea34733a50ab840";
+const F2FAPIKEY1 = "208153e49795cf523ea34733a50ab840";
+const F2FAPIKEY2 = "9e8f605e4eff28b96cee2e6556474d39";
+const F2FAPIKEY3 = "8bd80a16e601ea37905e2581c6822c17";
+const F2FAPIKEY4 = "bfcda5a0f3f2470af87457d359034804";
+const F2FAPIKEY5 = "3e193bb1b58be8f4acc9c8a324a4b2fd";
+
+const F2FAPIKEY = F2FAPIKEY3;
 
 export default class config {
   // Food2fork

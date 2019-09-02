@@ -10,7 +10,7 @@ class RecipeDetails extends Component {
 
     this.state = {
       recipe: recipe,
-      url: config.F2FGET + props.recipe_id
+      url: config.F2FGET + props.id
     };
   }
 
@@ -28,6 +28,15 @@ class RecipeDetails extends Component {
     const jsonData = await data.json();
     return jsonData.recipe;
   };
+
+  renderIngredients = ingredients =>
+    ingredients.map((ingredient, id) => {
+      return (
+        <li key={id} className="list-group-item text-slanted">
+          {ingredient}
+        </li>
+      );
+    });
 
   render() {
     const {
@@ -80,13 +89,7 @@ class RecipeDetails extends Component {
               {/* ingredients */}
               <ul className="list-group mt-4">
                 <h2 className="mt-3 mb-4 text-capitalize">Ingredients</h2>
-                {ingredients.map((ingredient, id) => {
-                  return (
-                    <li key={id} className="list-group-item text-slanted">
-                      {ingredient}
-                    </li>
-                  );
-                })}
+                {ingredients && this.renderIngredients(ingredients)}
               </ul>
             </div>
           </div>

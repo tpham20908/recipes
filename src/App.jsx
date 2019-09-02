@@ -22,20 +22,20 @@ class App extends Component {
     url: config.F2FSEARCH
   };
 
-  // async componentDidMount() {
-  //   try {
-  //     const recipes = await this.getReceipes(this.state.url);
-  //     this.setState({ recipes });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  async componentDidMount() {
+    try {
+      const recipes = await this.getReceipes(this.state.url);
+      this.setState({ recipes });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  // getReceipes = async url => {
-  //   const data = await fetch(url);
-  //   const jsonData = await data.json();
-  //   return jsonData.recipes;
-  // };
+  getReceipes = async url => {
+    const data = await fetch(url);
+    const jsonData = await data.json();
+    return jsonData.recipes;
+  };
 
   setRecipeId = id => {
     // event.preventDefault();
