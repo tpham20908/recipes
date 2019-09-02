@@ -15,15 +15,7 @@ const styles = {
 class Recipe extends Component {
   render() {
     const { setRecipeId } = this.props;
-    const {
-      recipe_id,
-      image_url,
-      ingredients,
-      publisher,
-      publisher_url,
-      source_url,
-      title
-    } = this.props.recipe;
+    const { recipe_id, image_url, publisher, title } = this.props.recipe;
 
     return (
       <React.Fragment>
@@ -45,20 +37,12 @@ class Recipe extends Component {
               <Link to={`/details`}>
                 <button
                   type="button"
-                  className="btn btn-primary text-capitalize"
+                  className="btn btn-block btn-primary text-capitalize"
                   onClick={() => setRecipeId(recipe_id)}
                 >
                   Details
                 </button>
               </Link>
-              <a
-                className="btn btn-success text-capitalize mx-2"
-                href={source_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Recipe url
-              </a>
             </div>
           </div>
         </div>

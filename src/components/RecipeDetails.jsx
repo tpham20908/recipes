@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import config from "../config";
-import { recipe } from "../templates/tempDetails";
+import BannerWidth1 from "../ads/BannerWidth1";
+import BannerWidth2 from "../ads/BannerWidth2";
 
 class RecipeDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      recipe: recipe,
+      recipe: {},
       url: config.F2FGET + props.id
     };
   }
@@ -52,6 +53,7 @@ class RecipeDetails extends Component {
       <React.Fragment>
         <div className="container">
           <div className="row">
+            <BannerWidth1 />
             <div className="col-10 mx-auto col-md-6 my-3">
               <Link to="/">
                 <button
@@ -84,7 +86,7 @@ class RecipeDetails extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Recipe url
+                How-to
               </a>
               {/* ingredients */}
               <ul className="list-group mt-4">
@@ -92,6 +94,7 @@ class RecipeDetails extends Component {
                 {ingredients && this.renderIngredients(ingredients)}
               </ul>
             </div>
+            <BannerWidth2 />
           </div>
         </div>
       </React.Fragment>

@@ -4,11 +4,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import config from "./config";
 import { recipes } from "./templates/tempList";
-import BannerLeft from "./BannerLeft";
-import BannerRight from "./BannerRight";
 import RecipeDetails from "./components/RecipeDetails";
 import RecipeList from "./components/RecipeList";
-import { async } from "q";
 
 const pages = config.NUMBEROFPAGE;
 const query = config.QUERY;
@@ -99,8 +96,6 @@ class App extends Component {
               render={() => <RecipeDetails id={recipe_id} />}
             />
           </div>
-          {/* <BannerLeft /> */}
-          {/* <BannerRight /> */}
         </BrowserRouter>
       </React.Fragment>
     );
