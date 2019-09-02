@@ -33,6 +33,8 @@ export default class config {
   // Food2fork
   static F2FSEARCH = `https://www.food2fork.com/api/search?key=${F2FAPIKEY}`;
   static F2FGET = `https://www.food2fork.com/api/get?key=${F2FAPIKEY}&rId=`;
+  static QUERY = "&q=";
+  static NUMBEROFPAGE = "&page=";
   // TheMealDB
   static AREA = "https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian";
   static CATEGORIES = "https://www.themealdb.com/api/json/v1/1/categories.php";

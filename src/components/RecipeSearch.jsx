@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class RecipeSearch extends Component {
   render() {
+    const { handleChange, handleSubmit, value } = this.props;
     return (
       <React.Fragment>
         <div className="container">
@@ -11,16 +13,18 @@ class RecipeSearch extends Component {
                 Search for recipes with{" "}
                 <strong className="text-danger">Food2Ford</strong>
               </h1>
-              <form className="mt-4">
+              <form className="mt-4" onSubmit={handleSubmit}>
                 <label htmlFor="search" className="text-capitalize">
                   Type recipes separated by comma
                 </label>
                 <div className="input-group">
                   <input
                     className="form-control"
-                    type="text"
+                    onChange={handleChange}
                     name="search"
                     placeholder="chicken, cheese, carrots"
+                    type="text"
+                    value={value}
                   />
                   <div className="input-group-append">
                     <button className="input-group-text bg-primary text-white">
@@ -36,5 +40,11 @@ class RecipeSearch extends Component {
     );
   }
 }
+
+RecipeSearch.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
+};
 
 export default RecipeSearch;

@@ -8,6 +8,11 @@ import BannerLeft from "./BannerLeft";
 import BannerRight from "./BannerRight";
 import RecipeDetails from "./components/RecipeDetails";
 import RecipeList from "./components/RecipeList";
+import { async } from "q";
+
+const pages = config.NUMBEROFPAGE;
+const query = config.QUERY;
+const baseUrl = config.F2FSEARCH;
 
 const styles = {
   container: {
@@ -19,17 +24,36 @@ class App extends Component {
   state = {
     recipe_id: 35376,
     recipes: recipes,
-    url: config.F2FSEARCH
+    searchTearm: ""
   };
 
   async componentDidMount() {
     try {
-      const recipes = await this.getReceipes(this.state.url);
+      const recipes = await this.getReceipes(baseUrl);
       this.setState({ recipes });
     } catch (error) {
       console.log(error);
     }
   }
+
+  handleChange = event => {
+    const searchTearm = event.target.value;
+    this.setState({ searchTearm });
+  };
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      const numberOfPage = 2;
+      const { searchTearm } = this.state;
+      const recipes = await this.getReceipes(
+        `${baseUrl}${query}${searchTearm}${pages}${numberOfPage}`
+      );
+      this.setState({ recipes, searchTearm: "" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   getReceipes = async url => {
     const data = await fetch(url);
@@ -38,12 +62,11 @@ class App extends Component {
   };
 
   setRecipeId = id => {
-    // event.preventDefault();
     this.setState({ recipe_id: id });
   };
 
   render() {
-    const { recipe_id, recipes } = this.state;
+    const { recipe_id, recipes, searchTearm } = this.state;
 
     return (
       <React.Fragment>
@@ -53,15 +76,19 @@ class App extends Component {
               exact
               path="/"
               render={() => (
-                <RecipeList recipes={recipes} setRecipeId={this.setRecipeId} />
+                <RecipeList
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                  recipes={recipes}
+                  setRecipeId={this.setRecipeId}
+                  value={searchTearm}
+                />
               )}
             />
             <Route
               path="/details"
               render={() => <RecipeDetails id={recipe_id} />}
             />
-            {/* <RecipeList recipes={recipes} setRecipeId={this.setRecipeId} />
-            {/* <RecipeDetails id={recipe_id} /> */}
           </div>
           {/* <BannerLeft /> */}
           {/* <BannerRight /> */}

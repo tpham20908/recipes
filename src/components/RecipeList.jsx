@@ -6,11 +6,21 @@ import RecipeSearch from "./RecipeSearch";
 
 class RecipeList extends Component {
   render() {
-    const { recipes, setRecipeId } = this.props;
+    const {
+      handleChange,
+      handleSubmit,
+      recipes,
+      setRecipeId,
+      value
+    } = this.props;
 
     return (
       <React.Fragment>
-        <RecipeSearch />
+        <RecipeSearch
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          value={value}
+        />
         <div className="container my-5">
           {/* title */}
           <div className="row">
@@ -38,8 +48,11 @@ class RecipeList extends Component {
 }
 
 RecipeList.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   recipes: PropTypes.array.isRequired,
-  setRecipeId: PropTypes.func.isRequired
+  setRecipeId: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 };
 
 export default RecipeList;
