@@ -25,7 +25,7 @@ let arrayKeys = [
 setInterval(() => {
   arrayKeys.push(arrayKeys.shift());
   console.log(arrayKeys[0]);
-}, 1000 * 60 * 60);
+}, 1000 * 60 * 5);
 
 const F2FAPIKEY = arrayKeys[1];
 
