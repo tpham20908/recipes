@@ -22,12 +22,14 @@ let arrayKeys = [
   F2FAPIKEY10
 ];
 
-setInterval(() => {
+/* setInterval(() => {
   arrayKeys.push(arrayKeys.shift());
   console.log(arrayKeys[0]);
-}, 1000 * 60 * 5);
+}, 1000 * 60 * 5); */
 
-const F2FAPIKEY = arrayKeys[1];
+const randomIndex = Math.floor(Math.random() * 10);
+
+const F2FAPIKEY = arrayKeys[randomIndex];
 
 export default class config {
   // Food2fork
