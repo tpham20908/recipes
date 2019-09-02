@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const styles = {
+  cardBody: {
+    height: 112
+  },
   imgCard: {
     maxHeight: "14rem",
     height: "12rem"
@@ -32,7 +35,7 @@ class Recipe extends Component {
               className="img-card-top"
               alt="recipe"
             />
-            <div className="card-body text-capitalize">
+            <div className="card-body text-capitalize" style={styles.cardBody}>
               <h6>{title}</h6>
               <h6 className="text-warning text-slanted">
                 Provided by {publisher}
