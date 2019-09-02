@@ -15,7 +15,10 @@ class RecipeSearch extends Component {
               </h1>
               <form className="mt-4" onSubmit={handleSubmit}>
                 <label htmlFor="search" className="text-capitalize">
-                  Type recipes separated by comma
+                  <em>
+                    Search by single Country name or Ingredients separated by
+                    comma
+                  </em>
                 </label>
                 <div className="input-group">
                   <input
